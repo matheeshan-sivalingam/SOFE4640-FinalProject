@@ -15,6 +15,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         DatabaseReference myRef = database.getReference("Test1");
-        myRef.setValue("Test2");
+        myRef.setValue("user");
     }
 }
