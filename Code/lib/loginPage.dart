@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sofe4640_finalproject/registerPage.dart';
 
 class loginPage extends StatefulWidget {
   const loginPage({super.key});
@@ -21,36 +22,32 @@ class _LoginPage extends State<loginPage>{
             // Logo
               Image.asset('assets/logo/logo.png'),
             // username textfield
-              TextField(
+              const TextField(
                 decoration: InputDecoration(
                   labelText: "Email",
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(width: 3, color: Colors.redAccent),
-                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide(width: 3, color: Colors.redAccent),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(width: 3, color: Colors.redAccent),
-                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide(width: 3, color: Colors.redAccent),
                   ),
                   filled: true,
                   fillColor: Colors.white60,
                 ),
               ),
 
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
             // password textfield
-              TextField(
+              const TextField(
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: "Password",
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(width: 3, color: Colors.redAccent),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(width: 3, color: Colors.redAccent),
-                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide(width: 3, color: Colors.redAccent),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(width: 3, color: Colors.redAccent),
                   ),
                   filled: true,
                   fillColor: Colors.white60,
@@ -65,13 +62,13 @@ class _LoginPage extends State<loginPage>{
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
-                      minimumSize: Size(200, 50),
+                      minimumSize: const Size(200, 50),
                       elevation: 3,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)
+                        borderRadius: BorderRadius.circular(30)
                       ),
                     ),
-                    child: Text('Login'),
+                    child: const Text('Login'),
                     onPressed: () {
                     },
                   )
@@ -84,10 +81,15 @@ class _LoginPage extends State<loginPage>{
                 child: Align(
                   alignment: FractionalOffset.bottomCenter,
                     child: MaterialButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const registerPage())
+                        );
+                      },
                       child: RichText(
                         text: const TextSpan(
-                            text: "Don't have an account? ",
+                            text: "New user? ",
                             style: TextStyle(
                               fontSize: 15,
                               color: Colors.black,
