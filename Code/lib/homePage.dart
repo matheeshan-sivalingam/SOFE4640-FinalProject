@@ -39,10 +39,11 @@ class _HomePage extends State<homePage> {
   Future signOut() async {
     await FirebaseAuth.instance.signOut();
     if (mounted) {
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const loginPage()));
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Successfully Logged Out!"),
       ));
-      Navigator.pop(context, MaterialPageRoute(builder: (context) => const loginPage()));
+
     }
   }
 }

@@ -131,7 +131,7 @@ class _LoginPage extends State<loginPage>{
             password: password.text
         );
         if (mounted) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const homePage()),
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const homePage()),
           );
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text("Login successful"),
