@@ -32,6 +32,7 @@ Note - Task list is tentative and is meant more of a general guidelines of what 
 - [ ] Design UI - Base UI is created. Design will be improved later 
 - [ ] Implement general functionality
 ### Cart page
+* Note - I implemented the cart function following this tutorial up to 7:30 (https://youtu.be/LDzIMSXaKVo?t=430).<br>
 - [ ] Design UI
 - [ ] Implement general functionality
 ### Checkout Page
