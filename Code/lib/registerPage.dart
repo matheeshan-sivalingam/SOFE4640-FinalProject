@@ -22,6 +22,15 @@ class _RegisterPage extends State<registerPage> {
   TextEditingController email = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController password = TextEditingController();
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    fname.dispose();
+    lname.dispose();
+    email.dispose();
+    phone.dispose();
+    password.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
 

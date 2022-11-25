@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'homePage.dart';
+import 'mainPage.dart';
 import 'loginPage.dart';
 
 Future main() async {
@@ -22,12 +22,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MainPage(),
+      home: const MainPage(),
     );
   }
 }
 
 class MainPage extends StatelessWidget {
+  const MainPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +44,7 @@ class MainPage extends StatelessWidget {
             ));
           }
           if (snapshot.hasData){
-            return const homePage();
+            return const mainPage();
           }
           else {
             return const loginPage();

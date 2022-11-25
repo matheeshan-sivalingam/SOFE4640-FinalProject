@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:sofe4640_finalproject/homePage.dart';
+import 'package:sofe4640_finalproject/mainPage.dart';
 import 'package:sofe4640_finalproject/registerPage.dart';
 
 class loginPage extends StatefulWidget {
@@ -136,7 +136,7 @@ class _LoginPage extends State<loginPage>{
             password: password.text
         );
         if (mounted) {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const homePage()),
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const mainPage()),
           );
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text("Login successful"),
