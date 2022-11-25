@@ -22,7 +22,7 @@ Note - Task list is tentative and is meant more of a general guidelines of what 
 - [x] Design UI 
 - [x] Implement general functionality 
 - [x] Write user information to firebase
-- [x] Error checking
+- [ ] Error checking
 ### Home screen 
 - [ ] Design UI - Base UI is created. Design will be improved later 
 - [x] Implement general functionality
