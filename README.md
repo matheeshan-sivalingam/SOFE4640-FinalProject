@@ -9,7 +9,7 @@ Matheeshan Sivalingam (100703887) <br>
 Note - Task list is tentative and is meant more of a general guidelines of what we should implement. Will add and update 
 ### General 
 - [x] Setup and connect firebase to app
-- [ ] Populate database with different products
+- [ ] Populate database with different products - Couple items are added just for testing purposes. Will add more later
 ### Login page
 - [x] Design UI 
 - [x] Implement general functionality (save user's input locally) 
