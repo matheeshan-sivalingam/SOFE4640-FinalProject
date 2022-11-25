@@ -25,7 +25,7 @@ Note - Task list is tentative and is meant more of a general guidelines of what 
 - [x] Error checking
 ### Home screen 
 - [ ] Design UI - Base UI is created. Design will be improved later 
-- [ ] Implement general functionality
+- [x] Implement general functionality
 - [ ] Design product cards - Base product cards are created. Design will be improved later
 - [x] Retrieve product information from firebase
 - [ ] Add cart functionality - Base cart functionality added (Cart has been created. Also can add items to cart)
