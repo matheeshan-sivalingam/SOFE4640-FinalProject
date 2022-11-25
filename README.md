@@ -5,6 +5,8 @@ Waleed El Alawi (100764573)<br>
 Rubbia Pasha (100702075)<br>
 Matheeshan Sivalingam (100703887) <br>
 
+## Wireframes
+https://www.figma.com/file/TqFyPPW8oh1HkuUgV2h3Hh/LoginScreen?node-id=2%3A2&t=j21PgO44uXEW2l1P-1
 ## Tasks
 Note - Task list is tentative and is meant more of a general guidelines of what we should implement. Will add and update 
 ### General 
