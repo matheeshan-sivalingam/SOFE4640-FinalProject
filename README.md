@@ -11,19 +11,24 @@ Note - Task list is tentative and is meant more of a general guidelines of what 
 - [x] Setup and connect firebase to app
 - [ ] Populate database with different products
 ### Login page
-- [ ] Design UI 
-- [ ] Implement general functionality (save user's input locally) 
-- [ ] Retrieve and compare user information from firebase
+- [x] Design UI 
+- [x] Implement general functionality (save user's input locally) 
+- [x] Retrieve and compare user information from firebase
+- [x] Error checking
 ### Create an account page
-- [ ] Design UI 
-- [ ] Implement general functionality 
-- [ ] Write user information to firebase
+- [x] Design UI 
+- [x] Implement general functionality 
+- [x] Write user information to firebase
+- [x] Error checking
 ### Home screen 
-- [ ] Design UI
+- [ ] Design UI - Base UI is created. Design will be improved later 
 - [ ] Implement general functionality
-- [ ] Design product cards 
-- [ ] Retrieve product information from firebase
-- [ ] Add cart functionality
+- [ ] Design product cards - Base product cards are created. Design will be improved later
+- [x] Retrieve product information from firebase
+- [ ] Add cart functionality - Base cart functionality added (Cart has been created. Also can add items to cart)
+### Product details page
+- [ ] Design UI - Base UI is created. Design will be improved later 
+- [ ] Implement general functionality
 ### Cart page
 - [ ] Design UI
 - [ ] Implement general functionality
