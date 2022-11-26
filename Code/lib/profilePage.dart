@@ -25,6 +25,7 @@ class _ProfilePage extends State<profilePage> {
             child: Center(
                 child: ListView(
                     children:  [
+                      //Current user's email and signout button implemented for testing purposes
                       Text(user!.email!),
                       ElevatedButton(
                           onPressed: () {
