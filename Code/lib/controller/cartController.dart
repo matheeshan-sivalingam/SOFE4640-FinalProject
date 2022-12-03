@@ -2,22 +2,33 @@ import 'package:get/get.dart';
 import 'package:sofe4640_finalproject/product.dart';
 
 class CartController extends GetxController {
-  var cart = {}.obs;
+  var _cart = {}.obs;
 
   void addToCart(Product product) {
-    if (cart.containsKey(product.name)) {
-      cart[product.name]++;
-    } else {
-      cart[product.name] = 1;
+    if(_cart.containsKey(product)){
+      _cart[product] +=1;
     }
-    
-    print(product.name);
-    print(getNumOfProducts());
-    print(cart);
+    else {
+      _cart[product]= 1;
+    }
   }
 
   int getNumOfProducts() {
-   return cart.length;
+   return _cart.length;
   }
 
+  void removeProduct(Product product){
+    if (_cart.containsKey(product) && (_cart[product]) == 1){
+      _cart.removeWhere((key, value) => key == product);
+    }
+    else {
+      _cart[product]--;
+    }
+  }
+
+  get cart => _cart;
+
+  get cartSubtotal => _cart.entries
+      .map((product) => product.key.price * product.value)
+      .toList().reduce((value, element) => value+element).toStringAsFixed(2);
 }

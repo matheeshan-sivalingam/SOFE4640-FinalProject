@@ -17,7 +17,7 @@ class homePage extends StatefulWidget {
 }
 class _HomePage extends State<homePage> {
   User? user = FirebaseAuth.instance.currentUser;
-  final cartController = Get.put(CartController());
+  var cartController = Get.put(CartController());
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,21 @@ class _HomePage extends State<homePage> {
                     final products = snapshot.data!;
                     return Column(
                       children: [
-                        const Text("Trending Products"),
+                        const Padding(
+                        padding: EdgeInsets.fromLTRB(10, 15, 0, 0),
+                          child:
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child:
+                                Text("All Products",
+                              style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.left,
+                              ),
+                            ),
+                        ),
                         Expanded(
                             child: Padding(
                               padding: const EdgeInsets.all(10),
@@ -84,7 +98,7 @@ class _HomePage extends State<homePage> {
                   onPressed: (){
                     cartController.addToCart(product);
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text("You have added "+ product.name.toString()+ "to the cart")
+                      content: Text("You have added "+ product.name.toString()+ " to the cart")
                     ));
                   },
                   icon: const Icon(Icons.add_shopping_cart)
@@ -94,7 +108,7 @@ class _HomePage extends State<homePage> {
           Container(
             child: SizedBox(
               height: 100,
-              child: Image.asset("assets/images/galaxy-buds-pro-kv-s2.png")
+              child: Image.asset("assets/images/${product.id}.png")
             ),
           ),
           ListTile(
@@ -102,8 +116,10 @@ class _HomePage extends State<homePage> {
               padding: const EdgeInsets.fromLTRB(0, 25, 0,0),
               child: Column(
                 children: [
-                  Text(product.name.toString()),
-                  Text(product.price.toString())
+                  Text(product.brand.toString()),
+                  Text(product.name.toString(),
+                  textAlign: TextAlign.center),
+                  Text("\$${product.price}")
                 ],
               ),
             ),
@@ -120,6 +136,8 @@ class _HomePage extends State<homePage> {
 
 
 }
+
+
 
 
 

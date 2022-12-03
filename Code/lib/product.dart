@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Product {
-  String? id;
-  String? name;
-  String? brand;
-  int? price;
-  String? desc;
+  final String? id;
+  final String? name;
+  final String? brand;
+  final int? price;
+  final String? desc;
 
-  Product({
-    this.id = '',
+  const Product({
+    required this.id,
     required this.name,
     required this.brand,
     required this.price,
