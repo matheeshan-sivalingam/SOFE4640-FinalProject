@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:sofe4640_finalproject/loginPage.dart';
 import 'package:sofe4640_finalproject/homePage.dart';
 import 'package:sofe4640_finalproject/profilePage.dart';
 import 'package:sofe4640_finalproject/cartPage.dart';
+
 
 class mainPage extends StatefulWidget {
   const mainPage({super.key});

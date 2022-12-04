@@ -7,7 +7,7 @@ import 'package:sofe4640_finalproject/controller/cartController.dart';
 import 'package:sofe4640_finalproject/loginPage.dart';
 import 'package:sofe4640_finalproject/product.dart';
 import 'package:sofe4640_finalproject/controller/cartController.dart';
-
+import 'package:carousel_slider/carousel_slider.dart';
 
 class homePage extends StatefulWidget {
   const homePage({super.key});
@@ -18,7 +18,7 @@ class homePage extends StatefulWidget {
 class _HomePage extends State<homePage> {
   User? user = FirebaseAuth.instance.currentUser;
   var cartController = Get.put(CartController());
-
+  int cIndex = 0;
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<Object>(
@@ -40,6 +40,67 @@ class _HomePage extends State<homePage> {
                     final products = snapshot.data!;
                     return Column(
                       children: [
+                        CarouselSlider(
+                            items: [
+                              Container(
+                                margin: const EdgeInsets.all(8.0),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  image: const DecorationImage(
+                                    image: AssetImage("assets/images/carousel/banner1.png"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.all(8.0),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  image: const DecorationImage(
+                                    image: AssetImage("assets/images/carousel/banner2.png"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.all(8.0),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  image: const DecorationImage(
+                                    image: AssetImage("assets/images/carousel/banner3.png"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.all(8.0),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  image: const DecorationImage(
+                                    image: AssetImage("assets/images/carousel/banner4.png"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.all(8.0),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  image: const DecorationImage(
+                                    image: AssetImage("assets/images/carousel/banner5.png"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                          ],
+                          options: CarouselOptions(
+                              autoPlay: true,
+                              enlargeCenterPage: true,
+                              aspectRatio: 2.0,
+                            height: 150,
+                            viewportFraction: 1,
+                          ),
+                        ),
                         const Padding(
                         padding: EdgeInsets.fromLTRB(10, 15, 0, 0),
                           child:
@@ -76,7 +137,7 @@ class _HomePage extends State<homePage> {
                       ],
                     );
                   } else {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   }
                 }
               ),
