@@ -108,7 +108,7 @@ class _HomePage extends State<homePage> {
           Container(
             child: SizedBox(
               height: 100,
-              child: Image.asset("assets/images/${product.id}.png")
+              child: Image.asset("assets/images/products/${product.id}.png")
             ),
           ),
           ListTile(

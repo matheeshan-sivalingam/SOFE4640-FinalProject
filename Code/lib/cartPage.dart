@@ -1,10 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sofe4640_finalproject/shippingPage.dart';
 import 'package:sofe4640_finalproject/controller/cartController.dart';
 import 'package:sofe4640_finalproject/loginPage.dart';
 import 'package:get/get.dart';
 import 'package:sofe4640_finalproject/product.dart';
+import 'package:sofe4640_finalproject/shippingPage.dart';
+
 
 class cartPage extends StatefulWidget {
   const cartPage({super.key});
@@ -28,19 +32,17 @@ class _CartPage extends State<cartPage> {
           body:
               Column(
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(10, 15, 0, 0),
+                   Padding(
+                    padding: EdgeInsets.fromLTRB(20, 50, 0, 0),
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("Shopping Cart",
-                        style: TextStyle(
-                          fontSize: 50,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.left,
+                      child: Text(
+                        "Shopping Cart",
+                        style: GoogleFonts.bebasNeue(fontSize: 60, height: 0.9),
+                        textAlign: TextAlign.center,
+                      ),
                       ),
                     ),
-                  ),
                   if (controller.cart.length > 0) ...[
                     Container(
                       child: Expanded(
@@ -125,7 +127,7 @@ class CartProductCard extends StatelessWidget {
                             children:[
                               SizedBox(
                                   height: 125,
-                                  child: Image.asset("assets/images/${product.id}.png")
+                                  child: Image.asset("assets/images/products/${product.id}.png")
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -204,24 +206,30 @@ class CartTotal extends StatelessWidget {
         Align(
           alignment: Alignment.bottomCenter,
           child:
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.red,
-              minimumSize: const Size(200, 50),
-              elevation: 3,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+                minimumSize: const Size(200, 50),
+                elevation: 3,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30)
+                ),
               ),
+              child: const Text('Proceed to checkout'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const shippingPage()),
+                );
+              },
             ),
-            child: const Text('Proceed to checkout'),
-            onPressed: () {
-            },
           )
         )
       ],
     );
   }
-
 }
 
 

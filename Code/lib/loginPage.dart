@@ -34,7 +34,7 @@ class _LoginPage extends State<loginPage>{
                 child: ListView(
                   children:  [
                     // Logo
-                    Image.asset('assets/logo/logo.png'),
+                    Image.asset('assets/images/logo/logo.png'),
                     // username textfield
                     TextField(
                       controller: email,
