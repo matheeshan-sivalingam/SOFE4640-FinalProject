@@ -12,7 +12,14 @@ class CartController extends GetxController {
       _cart[product]= 1;
     }
   }
-
+  void addToCartQ(int q, Product product) {
+    if(_cart.containsKey(product)){
+      _cart[product] +=q;
+    }
+    else {
+      _cart[product]= q;
+    }
+  }
   int getNumOfProducts() {
    return _cart.length;
   }

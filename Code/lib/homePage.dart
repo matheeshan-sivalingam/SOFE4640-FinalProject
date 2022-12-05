@@ -8,6 +8,8 @@ import 'package:sofe4640_finalproject/loginPage.dart';
 import 'package:sofe4640_finalproject/product.dart';
 import 'package:sofe4640_finalproject/controller/cartController.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:get/get.dart';
+import 'package:sofe4640_finalproject/controller/quantityController.dart';
 
 class homePage extends StatefulWidget {
   const homePage({super.key});
@@ -18,7 +20,7 @@ class homePage extends StatefulWidget {
 class _HomePage extends State<homePage> {
   User? user = FirebaseAuth.instance.currentUser;
   var cartController = Get.put(CartController());
-  int cIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<Object>(
@@ -27,6 +29,7 @@ class _HomePage extends State<homePage> {
         return Scaffold(
             appBar: AppBar(
               title: const Text("Home"),
+              automaticallyImplyLeading: false,
             ),
             backgroundColor: Colors.grey[100],
           body:
@@ -38,7 +41,8 @@ class _HomePage extends State<homePage> {
                   }
                   else if (snapshot.hasData) {
                     final products = snapshot.data!;
-                    return Column(
+                    return 
+                      ListView(
                       children: [
                         CarouselSlider(
                             items: [
@@ -116,11 +120,12 @@ class _HomePage extends State<homePage> {
                               ),
                             ),
                         ),
-                        Expanded(
-                            child: Padding(
+                         Padding(
                               padding: const EdgeInsets.all(10),
                               child: Container(
                                 child: GridView.builder(
+                                    physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
                                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2,
                                         mainAxisSpacing: 0,
@@ -133,7 +138,6 @@ class _HomePage extends State<homePage> {
                                 ),
                               ),
                             )
-                        )
                       ],
                     );
                   } else {
@@ -146,48 +150,56 @@ class _HomePage extends State<homePage> {
     );
   }
 
-  Widget ProductCard(Product product) => Card(
+  Widget ProductCard(Product product) =>
+      GestureDetector(
+        onTap: (){
+          final QuantityController quantityController = Get.put(QuantityController());
+          quantityController.initialize();
+          getProductDetails(product);
+        },
+        child: Card(
     elevation: 3,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              IconButton(
-                  onPressed: (){
-                    cartController.addToCart(product);
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text("You have added "+ product.name.toString()+ " to the cart")
-                    ));
-                  },
-                  icon: const Icon(Icons.add_shopping_cart)
-              ),
-            ],
-          ),
-          Container(
-            child: SizedBox(
-              height: 100,
-              child: Image.asset("assets/images/products/${product.id}.png")
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(
+                    onPressed: (){
+                      cartController.addToCart(product);
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("You have added "+ product.name.toString()+ " to the cart")
+                      ));
+                    },
+                    icon: const Icon(Icons.add_shopping_cart)
+                ),
+              ],
             ),
-          ),
-          ListTile(
-            title: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 25, 0,0),
-              child: Column(
-                children: [
-                  Text(product.brand.toString()),
-                  Text(product.name.toString(),
-                  textAlign: TextAlign.center),
-                  Text("\$${product.price}")
-                ],
+            Container(
+              child: SizedBox(
+                height: 100,
+                child: Image.asset("assets/images/products/${product.id}.png")
               ),
             ),
-          ),
-        ],
-      ),
-  );
+            ListTile(
+              title: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 25, 0,0),
+                child: Column(
+                  children: [
+                    Text(product.brand.toString()),
+                    Text(product.name.toString(),
+                    textAlign: TextAlign.center),
+                    Text("\$${product.price}")
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+  ),
+      );
 
   Stream<List<Product>> getProducts() => FirebaseFirestore.instance
       .collection("products")
@@ -196,7 +208,146 @@ class _HomePage extends State<homePage> {
           snapshot.docs.map((doc) => Product.fromJSON(doc.data())).toList());
 
 
+  void getProductDetails(Product product) async {
+    await Get.bottomSheet(
+        isScrollControlled: true,
+        Container(
+          width: double.infinity,
+          height: 700,
+          color: Colors.white,
+          child:
+            SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                  children:[
+                    Center(
+                      child: Image.asset(
+                                "assets/images/products/${product.id}.png",
+                              height: 325,
+                              width: 325,
+                              fit: BoxFit.contain,
+                            ),
+                    ),
+
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                        child: Text(
+                          product.brand.toString(),
+                          style: GoogleFonts.inter(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w200
+                          ),
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                        child: Text(
+                          product.name.toString(),
+                          style: GoogleFonts.inter(
+                              fontSize: 50,
+                              fontWeight: FontWeight.w600
+                          ),
+                        ),
+                      ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                      child: Text(
+                        "\$${product.price?.toStringAsFixed(2)}",
+                        style: GoogleFonts.inter(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w300
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
+                      child: Text(
+                        "${product.desc}",
+                        style: GoogleFonts.inter(
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                    quantity(),
+                    Center(
+                      child:
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 30),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red,
+                            minimumSize: const Size(200, 50),
+                            elevation: 3,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30)
+                            ),
+                          ),
+                          child: const Text('Add to cart'),
+                          onPressed: () {
+                            final QuantityController quantityController = Get.put(QuantityController());
+                            final cartController = Get.put(CartController());
+                            int quant = quantityController.quantity;
+                            cartController.addToCartQ(quant, product);
+                            Navigator.pop(context);
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text("You have added "+ product.name.toString()+ " to the cart")
+                            ));
+
+                          },
+                        ),
+                      ),
+                    )
+                  ],
+              ),
+            ),
+    ));
+
+    // The code below will run after the bottom sheet goes away
+    debugPrint('The Bottom Sheet has gone away!');
+  }
+
 }
+
+class quantity extends StatelessWidget {
+  quantity({super.key});
+  final QuantityController quantityController = Get.put(QuantityController());
+  @override
+  Widget build(BuildContext context) {
+    return Obx(()=>
+      Padding(
+        padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Qty: ",
+              style: GoogleFonts.inter(
+                  fontSize: 20
+              ),
+            ),
+            IconButton(
+                onPressed: () {
+                  quantityController.decrement();
+                },
+                icon: const Icon(Icons.remove_circle)
+            ),
+            Text(quantityController.quantity.toString()),
+            IconButton(
+                onPressed: () {
+                  quantityController.increment();
+                },
+                icon: const Icon(Icons.add_circle)
+            ),
+          ],
+        )
+      ),
+    );
+  }
+}
+
+
+
+
 
 
 

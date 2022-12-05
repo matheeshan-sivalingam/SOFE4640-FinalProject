@@ -75,19 +75,19 @@ class _LoginPage extends State<loginPage>{
           // login in button
           Center(
             child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-                minimumSize: const Size(200, 50),
-                elevation: 3,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30)
-                ),
-              ),
-              child: const Text('Login'),
-              onPressed: () {
-                logIn();
-              },
-            )
+          style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.red,
+            minimumSize: const Size(200, 50),
+            elevation: 3,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30)
+            ),
+          ),
+                child: const Text('Login'),
+                onPressed: () {
+                  logIn();
+                },
+              )
           ),
 
           const SizedBox(height: 30),

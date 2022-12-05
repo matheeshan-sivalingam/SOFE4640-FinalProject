@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sofe4640_finalproject/homePage.dart';
 import 'package:sofe4640_finalproject/loginPage.dart';
 import 'package:get/get.dart';
 import 'package:sofe4640_finalproject/mainPage.dart';
@@ -32,6 +33,7 @@ class _ConfirmationPage extends State<confirmationPage> {
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: const Text("Confirmation Page"),
+          automaticallyImplyLeading: false,
       ),
       body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -83,7 +85,10 @@ class _ConfirmationPage extends State<confirmationPage> {
                             child: const Text('Continue Shopping'),
                             onPressed: () {
                               controller.clearCart();
-                              Get.to(mainPage());
+                              Navigator.pushReplacement(
+                                context,
+                                  MaterialPageRoute(builder: (context) => const mainPage()),
+                              );
                             },
                           )
                       ),

@@ -27,6 +27,7 @@ class _CartPage extends State<cartPage> {
       Scaffold(
           appBar: AppBar(
             title: const Text("Cart"),
+            automaticallyImplyLeading: false,
           ),
           backgroundColor: Colors.grey[100],
           body:
@@ -72,13 +73,37 @@ class _CartPage extends State<cartPage> {
                       ),
                     ),
                   ] else ... [
-                    Text("Empty")
+                    emptyCart(context)
                 ],
                 ],
 
 
               ),
           ),
+    );
+  }
+  Widget emptyCart(BuildContext context) {
+    CartController controller = Get.find();
+    return Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(height: 80),
+          Image(image: AssetImage("assets/images/etc/shoppingCartEmpty.png")),
+          SizedBox(height: 30),
+          Text("Your Cart is Empty",
+              style: GoogleFonts.montserrat(
+                fontSize: 25,
+                fontWeight: FontWeight.bold
+              ),
+          ),
+          SizedBox(height: 30),
+          Text("Looks like you haven't added anything to your cart yet",
+            textAlign: TextAlign.center,
+            style: GoogleFonts.montserrat(
+                fontSize: 18,
+            ),),
+      ]
     );
   }
 }
@@ -125,9 +150,13 @@ class CartProductCard extends StatelessWidget {
                           ),
                           child: Row(
                             children:[
-                              SizedBox(
-                                  height: 125,
-                                  child: Image.asset("assets/images/products/${product.id}.png")
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SizedBox(
+                                    height: 125,
+                                    width: 125,
+                                    child: Image.asset("assets/images/products/${product.id}.png")
+                                ),
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,6 +193,8 @@ class CartProductCard extends StatelessWidget {
         ],
       );
   }
+
+
 }
 
 class CartTotal extends StatelessWidget {
@@ -174,35 +205,29 @@ class CartTotal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(40),
-          child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 70),
-                  child:
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text("Total",
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 40),
+            child:
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text("Subtotal - ",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
                         ),
-                        Text(
-                          '\$${controller.cartSubtotal}',
-                          style: const TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      ),
+                      Text(
+                        '\$${controller.cartSubtotal}',
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
                         ),
-                      ],
+                      ),
+                    ],
 
-                    ),
-                ),
-              )
-        ),
+                  ),
+          ),
         Align(
           alignment: Alignment.bottomCenter,
           child:

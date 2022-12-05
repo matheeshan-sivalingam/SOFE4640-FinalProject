@@ -221,6 +221,13 @@ class _PaymentPage extends State<paymentPage> {
         "bProv":data["bProv"],
         "bPost":data["bPost"]
       };
+      Map<String, dynamic> payment = {
+        "pName":pName.text,
+        "pCardNum":pCnum.text,
+        "pExpDate":pExpDate.text,
+        "pCvv":pCvv.text,
+        "pPost":pPost.text,
+      };
       Map<String, int> cart = {};
       for (int i = 0; i<controller.cart.length;i++)
         {
@@ -236,7 +243,8 @@ class _PaymentPage extends State<paymentPage> {
         'total':controller.cartTotal,
         'billing': billing,
         'shipping': shipping,
-        'cart': cart
+        'cart': cart,
+        'payment':payment
       });
       String orderID = _order.id;
       print(orderID);

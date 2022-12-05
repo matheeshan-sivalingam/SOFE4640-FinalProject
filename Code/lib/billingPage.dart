@@ -98,6 +98,14 @@ class _BillingPage extends State<billingPage> {
                                   bProv.text = data["sProv"];
                                   bPost.text = data["sPost"];
                                 }
+                                else {
+                                    bFname.text = "";
+                                    bLname.text = "";
+                                    bAddress.text = "";
+                                    bCity.text = "";
+                                    bProv.text = "";
+                                    bPost.text = "";
+                                }
                                 print("${data["sFname"]}");
                               });
                       },

@@ -174,14 +174,21 @@ class _ShippingPage extends State<shippingPage> {
                   ),
                   child: const Text('Continue to Billing Address'),
                   onPressed: () {
-                    Get.to(() => billingPage(), arguments: {
-                      "sFname":sFname.text,
-                      "sLname":sLname.text,
-                      "sAddress":sAddress.text,
-                      "sCity":sCity.text,
-                      "sProv":sProv.text,
-                      "sPost":sPost.text
-                    });
+                    if(sFname.text == '' || sLname.text == '' || sAddress.text == '' || sCity.text == '' || sProv.text == '' || sPost.text == '') {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text("Please make sure that all text fields are filled")));
+                    }
+                    else {
+                      Get.to(() => billingPage(), arguments: {
+                        "sFname":sFname.text,
+                        "sLname":sLname.text,
+                        "sAddress":sAddress.text,
+                        "sCity":sCity.text,
+                        "sProv":sProv.text,
+                        "sPost":sPost.text
+                      });
+                    }
+
                   },
                 )
             ),
