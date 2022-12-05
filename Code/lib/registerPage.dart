@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:sofe4640_finalproject/loginPage.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
 
 
@@ -119,6 +120,7 @@ class _RegisterPage extends State<registerPage> {
 
                 //Phone number textbox
                 TextField(
+                  keyboardType: TextInputType.number,
                   controller: phone,
                   decoration: const InputDecoration(
                     labelText: "Phone number",
@@ -131,12 +133,20 @@ class _RegisterPage extends State<registerPage> {
                     filled: true,
                     fillColor: Colors.white60,
                   ),
+                  inputFormatters: [
+                    PhoneInputFormatter(
+                      allowEndlessPhone: false,
+
+                    )
+                  ],
+
                 ),
 
                 const SizedBox(height: 20),
 
                 //Password textbox
                 TextField(
+                  obscureText: true,
                   controller: password,
                   decoration: const InputDecoration(
                     labelText: "Password",
