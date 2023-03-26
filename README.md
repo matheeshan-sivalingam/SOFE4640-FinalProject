@@ -34,7 +34,6 @@ Note - Task list is tentative and is meant more of a general guidelines of what 
 - [x] Implement general functionality
 ### Cart page
 The Cart page is where the user views all items added to the cart. The user should be able to adjust the quantity of each product. This should then lead to the Checkout page
-* Note - I started implementing the cart function following this tutorial up to 7:00 (https://youtu.be/LDzIMSXaKVo?t=430).<br>
 - [x] Design UI
 - [x] Implement general functionality
 ### Checkout Page
