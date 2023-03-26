@@ -12,7 +12,7 @@ https://www.figma.com/file/TqFyPPW8oh1HkuUgV2h3Hh/LoginScreen?node-id=2%3A2&t=j2
 Note - Task list is tentative and is meant more of a general guidelines of what we should implement. Will add and update 
 ### General 
 - [x] Setup and connect firebase to app
-- [ ] Populate database with different products - Couple items are added just for testing purposes. Will add more later
+- [x] Populate database with different products - Couple items are added just for testing purposes. Will add more later
 ### Login page
 - [x] Design UI 
 - [x] Implement general functionality (save user's input locally) 
@@ -22,7 +22,7 @@ Note - Task list is tentative and is meant more of a general guidelines of what 
 - [x] Design UI 
 - [x] Implement general functionality 
 - [x] Write user information to firebase
-- [ ] Error checking
+- [x] Error checking
 ### Home screen 
 - [x] Design UI - Base UI is created. Design will be improved later 
 - [x] Implement general functionality
